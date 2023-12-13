@@ -23,7 +23,7 @@ use anchor_lang::solana_program::instruction::Instruction;
 use std::convert::Into;
 use std::ops::Deref;
 
-declare_id!("msigUdDBsR4zSUYqYEDrc1LcgtmuSDDM7KxpRUXNC6U");
+declare_id!("86A3SjX2cdavMiAhipoZGbVmKq8Tbari4g3pc9iAqWL");
 
 #[program]
 pub mod coral_multisig {

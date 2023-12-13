@@ -1,11 +1,17 @@
 const anchor = require("@project-serum/anchor");
 const assert = require("assert");
+const {AnchorProvider} = require("@project-serum/anchor");
 
 describe("multisig", () => {
   // Configure the client to use the local cluster.
-  anchor.setProvider(anchor.getProvider());
+  const payer = anchor.web3.Keypair.generate();
+  let nodeWallet = new anchor.Wallet(payer);
+  // let nodeWallet = anchor.NodeWallet.local();
+  let connection = new anchor.web3.Connection('http://127.0.0.1:8899', 'confirmed');
+  anchor.setProvider(new AnchorProvider(connection, nodeWallet, {commitment: 'confirmed', preflightCommitment: 'confirmed'}));
 
   const program = anchor.workspace.CoralMultisig;
+  anchor.getProvider().connection.requestAirdrop(payer.publicKey, 1000000000)
 
   it("Tests the multisig program", async () => {
     const multisig = anchor.web3.Keypair.generate();
@@ -107,11 +113,7 @@ describe("multisig", () => {
         multisigSigner,
         transaction: transaction.publicKey,
       },
-      remainingAccounts: program.instruction.setOwners
-        .accounts({
-          multisig: multisig.publicKey,
-          multisigSigner,
-        })
+      remainingAccounts: accounts
         // Change the signer status on the vendor signer since it's signed by the program, not the client.
         .map((meta) =>
           meta.pubkey.equals(multisigSigner)

@@ -2,20 +2,20 @@
 seeds = true
 
 [programs.mainnet]
-coral_multisig = "msigUdDBsR4zSUYqYEDrc1LcgtmuSDDM7KxpRUXNC6U"
+coral_multisig = "86A3SjX2cdavMiAhipoZGbVmKq8Tbari4g3pc9iAqWL"
 
 [programs.devnet]
-coral_multisig = "msigUdDBsR4zSUYqYEDrc1LcgtmuSDDM7KxpRUXNC6U"
+coral_multisig = "86A3SjX2cdavMiAhipoZGbVmKq8Tbari4g3pc9iAqWL"
 
 [programs.localnet]
-coral_multisig = "msigUdDBsR4zSUYqYEDrc1LcgtmuSDDM7KxpRUXNC6U"
+coral_multisig = "86A3SjX2cdavMiAhipoZGbVmKq8Tbari4g3pc9iAqWL"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
 cluster = "localnet"
-wallet = "~/.config/solana/id.json"
+wallet = "~/.config/solana/id2.json"
 
 [scripts]
 test = "npx mocha -t 1000000 tests/"
